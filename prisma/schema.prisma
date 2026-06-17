@@ -1,0 +1,36 @@
+// Rehab Data Labelling Platform - Prisma Schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Video {
+  id        String   @id @default(cuid())
+  title      String
+  driveUrl   String   // Google Drive embed URL
+  duration   Float?   // Video duration in seconds (optional)
+  folderName String?  // Name of the sub-folder it was imported from
+  createdAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  labels    Label[]
+}
+
+model Label {
+  id            String   @id @default(cuid())
+  videoId       String
+  video         Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  repetitionNum Int      // 1-10
+  startTime     Float    // Start time in seconds
+  endTime       Float    // End time in seconds
+  score         Int?     // 0, 1, or 2 (null = not scored yet)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([videoId, repetitionNum])
+  @@index([videoId])
+}

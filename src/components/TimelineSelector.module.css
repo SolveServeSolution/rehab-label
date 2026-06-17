@@ -1,0 +1,318 @@
+/* ============================
+   Timeline — Light Theme
+   ============================ */
+
+.container {
+  background: var(--surface-base);
+  border: 1.5px solid var(--border-medium);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Timeline area (ruler + track + time) --- */
+.timelineArea {
+  padding: 0 16px;
+  background: var(--surface-elevated);
+  border-bottom: 1.5px solid var(--border-medium);
+}
+
+/* Ruler */
+.ruler {
+  position: relative;
+  height: 22px;
+  user-select: none;
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.rulerMark {
+  position: absolute;
+  top: 4px;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.rulerMark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 1px;
+  height: 4px;
+  background: var(--border-medium);
+}
+
+/* Track */
+.track {
+  position: relative;
+  height: 52px;
+  background: #eef0f5;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-medium);
+  margin: 8px 0;
+  overflow: visible;
+  user-select: none;
+}
+
+/* Segments */
+.segment {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 5px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  z-index: 1;
+  min-width: 8px;
+}
+
+.segment:hover,
+.segmentHovered {
+  opacity: 1 !important;
+  z-index: 3;
+}
+
+.segmentSelected {
+  opacity: 1 !important;
+  z-index: 4;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3), 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.segmentLabel {
+  font-size: 11px;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* Resize handles */
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  cursor: ew-resize;
+  z-index: 5;
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+
+.resizeHandle:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Playhead */
+.playhead {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.playheadHead {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent-primary);
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  filter: drop-shadow(0 1px 3px rgba(79, 70, 229, 0.5));
+}
+
+.playheadLine {
+  position: absolute;
+  top: 8px;
+  left: -0.5px;
+  width: 1.5px;
+  bottom: 0;
+  background: var(--accent-primary);
+  box-shadow: 0 0 4px rgba(79, 70, 229, 0.4);
+}
+
+/* Time display */
+.timeDisplay {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0 8px;
+}
+
+.currentTime {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.timeSep { font-size: 11px; color: var(--text-muted); }
+
+.totalTime {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* --- Controls bar --- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+  background: var(--surface-base);
+}
+
+/* Segment chips */
+.segmentChips {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 7px 4px 9px;
+  border-radius: 6px;
+  border: 1.5px solid;
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+.chip:hover { transform: translateY(-1px); }
+
+.chipSelected {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.chipTime {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.chipDelete {
+  width: 15px;
+  height: 15px;
+  border: none;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-muted);
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.15s;
+}
+
+.chipDelete:hover {
+  background: var(--error);
+  color: white;
+}
+
+.noSegments {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Add control */
+.addControl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--surface-elevated);
+  border: 1.5px solid var(--border-medium);
+}
+
+.addLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.addSep { font-size: 12px; color: var(--text-muted); }
+
+.timeInput {
+  width: 52px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1.5px solid var(--border-medium);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.timeInput:focus { border-color: var(--accent-primary); }
+
+.addBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent-primary);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(79,70,229,0.25);
+}
+
+.addBtn:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(79,70,229,0.35);
+}
+
+/* Spinner */
+.spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(79, 70, 229, 0.2);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

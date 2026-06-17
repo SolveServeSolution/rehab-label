@@ -1,0 +1,370 @@
+/* ====================================================
+   ScoringPanel — Light Theme, Doctor-Friendly
+   Big buttons, no timestamps, Thai labels
+   ==================================================== */
+
+.panel {
+  width: 320px;
+  min-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface-base);
+  border-left: 1.5px solid var(--border-medium);
+  padding: 20px 16px 24px;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ---- Header ---- */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent-primary);
+  background: rgba(79, 70, 229, 0.08);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(79, 70, 229, 0.18);
+  white-space: nowrap;
+}
+
+/* ---- Progress bar ---- */
+.progressBarWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface-elevated);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--success));
+  border-radius: 8px;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ---- Add Rep Button (prominent) ---- */
+.addRepBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px dashed var(--accent-primary);
+  background: rgba(79, 70, 229, 0.05);
+  color: var(--accent-primary);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.addRepBtn:hover {
+  background: rgba(79, 70, 229, 0.1);
+  border-color: var(--accent-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.15);
+}
+
+/* ---- Empty states ---- */
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--text-muted);
+  font-size: 15px;
+  text-align: center;
+}
+
+.emptyCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 16px;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ---- Scoring List ---- */
+.scoringList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-right: -4px;
+}
+
+/* ---- Score Card ---- */
+.scoreCard {
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid var(--border-subtle);
+  background: var(--surface-base);
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.scoreCard:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+.scoreCardDone {
+  border-color: rgba(79, 70, 229, 0.2);
+  background: rgba(79, 70, 229, 0.02);
+}
+
+/* ---- Card top row ---- */
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.repBadge {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex: 1;
+}
+
+.repNum {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.repText {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.scoreTag {
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.deleteRepBtn {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--border-medium);
+  background: var(--surface-elevated);
+  color: var(--text-muted);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.deleteRepBtn:hover {
+  background: var(--error);
+  border-color: var(--error);
+  color: white;
+}
+
+/* ---- Score Buttons ---- */
+.scoreButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.scoreBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 6px;
+  border-radius: 12px;
+  border: 2px solid var(--border-medium);
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.scoreBtn:hover {
+  border-color: var(--accent-primary);
+  background: rgba(79, 70, 229, 0.05);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.scoreBtnActive {
+  color: white !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.scoreBtnNum {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.scoreBtnTh {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.scoreBtnEn {
+  font-size: 9px;
+  font-weight: 500;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Save Button ---- */
+.saveBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+  flex-shrink: 0;
+}
+
+.saveBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+}
+
+.saveBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---- Spinner ---- */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---- Legend ---- */
+.legend {
+  padding-top: 12px;
+  border-top: 1.5px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.legendTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.legendItems {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}

@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: rehab-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: rehab_labelling
+      POSTGRES_USER: rehab
+      POSTGRES_PASSWORD: rehab123
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
