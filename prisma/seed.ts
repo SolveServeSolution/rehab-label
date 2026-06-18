@@ -1,9 +1,6 @@
-import "dotenv/config";
-import { PrismaClient } from "../src/generated/prisma/client.js";
-import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 const sampleVideos = [
   {
@@ -29,26 +26,24 @@ const sampleVideos = [
 ];
 
 async function main() {
-  console.log("🌱 Seeding database...");
+  console.log("Seeding database...");
 
-  // Clear existing data
   await prisma.label.deleteMany();
   await prisma.video.deleteMany();
 
-  // Create videos
   for (const video of sampleVideos) {
     const created = await prisma.video.create({
       data: video,
     });
-    console.log(`  ✓ Created video: ${created.title}`);
+    console.log(`  Created video: ${created.title}`);
   }
 
-  console.log("✅ Seeding complete!");
+  console.log("Seeding complete!");
 }
 
 main()
   .catch((e) => {
-    console.error("❌ Seed error:", e);
+    console.error("Seed error:", e);
     process.exit(1);
   })
   .finally(async () => {
